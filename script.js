@@ -2,22 +2,23 @@ require([
       "esri/WebScene",
       "esri/views/SceneView",
       "esri/Camera",
+      "esri/widgets/Legend",
       "esri/widgets/Home",
       "dojo/domReady!"
-    ], function(WebScene, SceneView, Camera, Home) {
+    ], function(WebScene, SceneView, Camera, Legend, Home) {
     
       var scene = new WebScene({
         portalItem:{
-         id:"1eae95ac39e2491282b5c417d2edc705" 
+         id:"15ab14efbabd472fa850a0d8d7460c01" 
         }
       });
       
       var camera = new Camera({
         position: [
-          -81.8830605860534,
-          17.759948039422046,
+          -87.67157322768287,
+          41.86408179479186,
           10000000
-          //area with biggest cluster of points
+          //Chicago - 41.86408179479186, -87.67157322768287
         ],
         tilt:0,
         heading:0
@@ -31,56 +32,63 @@ require([
         environment: {
             lighting: {
               date: new Date(),
-              directShadowsEnabled: true,
+              directShadowsEnabled: false,
               cameraTrackingEnabled: false
             }
         },
     });
     
+   view.ui.add(
+          new Legend({
+            view: view
+          }),
+          "bottom-right"
+        );
+ 
     var homeBtn = new Home({
         view: view
       });
 
     view.ui.add(homeBtn, "bottom-left");
     
-    [gbr, rsr, ncr].forEach(function(button) {
+    [stl, dmi, lra].forEach(function(button) {
       button.style.display = 'flex';
       view.ui.add(button, 'bottom-right');
     });
     
-    gbr.addEventListener('click', function() {
+    stl.addEventListener('click', function() {
       view.goTo({
         position: {
-          x: 146.21811574732055,
-          y: -14.069510050969559,
+          x: -90.2332859328471,
+          y: 38.60455930240417,
           z: 1000000
-          //great barrier reef
+          //saint louis - 38.60455930240417, -90.2332859328471
         },
         tilt:0,
         heading:0
       });
     });
       
-     rsr.addEventListener('click', function() {
+     dmi.addEventListener('click', function() {
       view.goTo({
         position: {
-          x: 38.820636242084085,
-          y: 20.39716630387608,
+          x: -93.65604561860111,
+          y: 41.587021947929045,
           z: 1000000
-          //Red Sea Reef
+          //des moines -  41.587021947929045, -93.65604561860111
         },
         tilt:0,
         heading:0
       });
     });
    
-     ncr.addEventListener('click', function() {
+     lra.addEventListener('click', function() {
       view.goTo({
         position: {
-          x: 166.43171263584816,
-          y: -22.29910758788525,
+          x: -92.29889788837065,
+          y: 34.74858309769987,
           z: 1000000
-          //New Caledonia Barrier Reef
+          //little rock -- 34.74858309769987, -92.29889788837065
         },
         tilt:0,
         heading:0
