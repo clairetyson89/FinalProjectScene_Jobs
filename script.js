@@ -29,13 +29,6 @@ require([
         map: scene,
         viewingMode:"global",
         camera: camera,
-        environment: {
-            lighting: {
-              date: new Date(),
-              directShadowsEnabled: false,
-              cameraTrackingEnabled: false
-            }
-        },
     });
     
    view.ui.add(
